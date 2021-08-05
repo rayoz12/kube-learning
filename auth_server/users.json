@@ -1,0 +1,11 @@
+[
+    {
+        "username": "ryan",
+        "password": "password",
+        "details": {
+            "access": "all",
+            "first_name": "Ryan",
+            "last_name": "Pereira"
+        }
+    }
+]
