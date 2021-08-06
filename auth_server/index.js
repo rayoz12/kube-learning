@@ -39,6 +39,15 @@ app.get('/me', (req, res) => {
     res.json(req.user.details);
 });
 
+app.use(function (err, req, res, next) {
+    if(err.name === 'UnauthorizedError') {
+        res.status(401).send("Unauthorized");
+        return;
+    }
+    console.error(err.stack)
+    res.status(500).send(err.stack);
+})
+
 app.listen(port, () => {
     console.log(`Auth Microservice listening at http://localhost:${port}`)
 })
