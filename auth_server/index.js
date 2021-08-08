@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const secret = "sdnjkawndjkwndjkandjkn129329439084324i4ufn4fj-03jkj"
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 

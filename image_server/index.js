@@ -33,8 +33,17 @@ const fs = require("fs").promises;
 
 const {PORT, AUTH_SERVER_HOSTNAME, AUTH_SERVER_PORT, NONCE_TIMEOUT} = process.env;
 
+if (AUTH_SERVER_HOSTNAME == undefined) {
+    console.error("AUTH_SERVER_HOSTNAME not defined in Environment!");
+    process.exit();
+}
+if (AUTH_SERVER_PORT == undefined) {
+    console.error("AUTH_SERVER_PORT not defined in Environment!");
+    process.exit();
+}
+
 // Convert to a number;
-const nonceTimeout = parseInt(NONCE_TIMEOUT);
+const nonceTimeout = NONCE_TIMEOUT ? parseInt(NONCE_TIMEOUT): 60000;
 
 const axios = require("axios").default;
 const express = require('express');
@@ -68,7 +77,7 @@ const nonceManager = new NonceManager();
 
 
 const app = express();
-const port = parseInt(PORT);
+const port = PORT ? parseInt(PORT) : 3001;
 
 app.use(express.json());
 
